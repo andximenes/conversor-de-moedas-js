@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+:root {
+    /*letter color result*/
+    --blue200: #7D8DEC;
+
+    /* Color for-container */
+    --blue300: #141534;
+
+    /*background color result*/
+    --blue400: #1F2151;
+
+    /* Colors Button*/
+    --blue600: #2F34AB; /*Default*/ 
+    --blue700: #4A5DCD;  /*Hover*/
+    --blue800: #2f33ab88;  /*Disabled*/
+    
+    /*letter color*/
+    --letter: #F1F2F6;
+
+    /*border color*/
+    --border: #2F3279;
+
+
+}
