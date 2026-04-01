@@ -4,12 +4,16 @@ console.log("script carregado! 🚀")
 const inputValue = document.querySelector("#value-input")
 const currencySelect = document.querySelector("#currency-select")
 const form = document.querySelector("form")
-const exchangeRate = document.querySelector("exchange-rate")
-const convertedValue = document.querySelector("converted-value")
+const exchangeRate = document.querySelector("#exchange-rate")
+const convertedValue = document.querySelector("#converted-value")
 
 
+//CSS
+let containerForm = document.querySelector(".container")
+let resultBox = document.querySelector(".result-box")
 
-//Variáveis de câmbio
+
+//Variáveis ref ao taxa de câmbio
 let dollar = 5.26 
 let euro = 6.04
 let pound = 6.97 //libra esterlina
@@ -28,17 +32,25 @@ inputValue.addEventListener("input", () => {
 
 })
 
+
 //Obtem o valor da moeda selecionada
 currencySelect.addEventListener("change", () => {
     const optionSelect = currencySelect.value
     console.log(optionSelect)
 })
 
+//Envia o formulário pelo btn de Enter
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault()
+        form.requestSubmit()
+    }
+})
 
 //
 form.addEventListener("submit", (event) =>{
     event.preventDefault()
-
+    
     let symbol = ""
     let rate = 0
 
@@ -67,5 +79,8 @@ form.addEventListener("submit", (event) =>{
 
     exchangeRate.textContent = `${symbol} 1 = R$ ${rate}`
     convertedValue.textContent = `R$ ${inputValue.value * rate} Reais`
+
+    containerForm.style.height = "340px"
+    resultBox.style.display = "flex"
 
 })

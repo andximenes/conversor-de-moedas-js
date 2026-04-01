@@ -25,12 +25,19 @@ form {
             border: 1px solid var(--border);
             background-color: var(--blue500);
             color: var(--letter);
+
+            cursor: pointer;
         }
 
-        & :hover {
-            cursor: pointer;
-            
+        & .fieldStyle:focus {
+            outline: none;
+            border: 1px solid var(--blue200);
         }
+
+        & .fieldStyle option {
+            background-color: rgb(4, 12, 85);
+        }
+
     }
 
 
