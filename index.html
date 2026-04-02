@@ -1,55 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conversor de Moedas</title>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
 
-</head>
-<body>
-    <div id="project">
-        <img src="./images/Background.svg" alt="Plano de fundo" id="background-image">
+    <link rel="stylesheet" href="styles.css" />
 
-        <header>
-            <img src="./images/logo.svg" alt="logo do projeto" id="logo">
-        </header>
+    <title>Convert</title>
+  </head>
+  <body>
+    <img src="./img/logo.svg" alt="Convert logo" />
 
-        <div class="container">
-            <form action="">
-                <div class="inputs-model">
-                    <label for="value-input">Valor</label>
-                    <input type="text" class="fieldStyle" id="value-input">
-                </div>
+    <main>
+      <form>
+        <label for="amount">valor</label>
+        <input type="text" name="amount" id="amount" placeholder="0" required />
 
-                <div class="inputs-model">
-                    <label for="currency-select">Moeda</label>
-                    <select name="currency" class="fieldStyle" id="currency-select">
-                        <option value="USD">Dólar Americano (USD)</option>
-                        <option value="EUR">Euro (EUR)</option>
-                        <option value="GBP">Libra Esterlina (GBP)</option>
-                    </select>
-                </div>
+        <label for="currency">moeda</label>
+        <select name="currency" id="currency" required>
+          <option value="" disabled selected hidden>Selecione a moeda</option>
+          <option value="USD">Dólar Americano</option>
+          <option value="EUR">Euro</option>
+          <option value="GBP">Libra Esterlina</option>
+        </select>
 
-                <div class="inputs-model">
-                    <button type="submit">Converte em reais</button>
-                </div>
-            </form>
+        <button type="submit">Converter em reais</button>
+      </form>
 
-            <div class="result-box">
-                <div class="iten-1">
-                    <p id="exchange-rate">US$ 1 = R$ 0,00</p>
-                </div>
-                <div class="iten-2">
-                    <h2 id="converted-value">0,00 Reais</h2>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-    <script src="./script/script.js"></script>
-</body>
+      <footer>
+        <span id="description">US$ 1 = R$ 4,86</span>
+        <h1 id="result">486,00 Reais</h1>
+      </footer>
+    </main>
+  </body>
 </html>

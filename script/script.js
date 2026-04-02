@@ -47,39 +47,41 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
+//converte o valor inserido para a moeda selecionada e exibe a taxa de câmbio e o valor convertido
+function convertCurrency(symbol, rate, value) {
+    //Teste - Verificar os parâmetros recebidos pela função
+    // console.log(`symbol: ${symbol}, rate: ${rate} value: ${value}`)
+
+    try {
+        
+    } catch (error) {
+        console.log(error)
+        alert("Ocorreu um erro ao converter a moeda. Por favor, tente novamente.")      
+    }
+}
+
+
 //
 form.addEventListener("submit", (event) =>{
     event.preventDefault()
     
-    let symbol = ""
-    let rate = 0
-
     //Teste - Verificar o valor selecionado e a taxa de câmbio correspondente
     console.log(`currencySelect.value: ${currencySelect.value}`)
-    console.log(`rate: ${rate}`)
 
     switch (currencySelect.value) {
         case "USD":
-            symbol = "US$"
-            rate = dollar
+            convertCurrency(inputValue.value, "S$", dollar)
             break
         case "EUR":
-            symbol = "€"
-            rate = euro
+            convertCurrency(inputValue.value, "€", euro)
             break
         case "GBP":
-            symbol = "£"
-            rate = pound
+            convertCurrency(inputValue.value, "£", pound)
             break
     }
 
     //Teste - Verificar o símbolo e a taxa de câmbio atribuídos
-    console.log(`${symbol} 1 = RS ${rate}`)
-    console.log(`R$ ${inputValue.value * rate} Reais`)
-
-    exchangeRate.textContent = `${symbol} 1 = R$ ${rate}`
-    convertedValue.textContent = `R$ ${inputValue.value * rate} Reais`
-
+   
     containerForm.style.height = "340px"
     resultBox.style.display = "flex"
 
