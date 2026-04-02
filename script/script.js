@@ -1,88 +1,83 @@
-console.log("script carregado! 🚀")
+//taxas
+let USD = 5.17
+let EUR = 5.96
+let GBP = 6.83
 
-//Variáveis
-const inputValue = document.querySelector("#value-input")
-const currencySelect = document.querySelector("#currency-select")
+//variáveis elementos html
+const amount = document.querySelector("#amount")
+const currency = document.querySelector("#currency")
 const form = document.querySelector("form")
-const exchangeRate = document.querySelector("#exchange-rate")
-const convertedValue = document.querySelector("#converted-value")
+const footer = document.querySelector("main footer")
+const description = document.querySelector("#description")
+const result = document.querySelector("#result")
 
+//Obtem o valor
+amount.addEventListener("input", () => {
+    //testa o recebimento do valor
+    //console.log(`Amount: ${amount.value}`)
 
-//CSS
-let containerForm = document.querySelector(".container")
-let resultBox = document.querySelector(".result-box")
+    //Substitui letras por vazio
+    const regex = /\D+/g
+    amount.value = amount.value.replace(regex, "")
 
-
-//Variáveis ref ao taxa de câmbio
-let dollar = 5.26 
-let euro = 6.04
-let pound = 6.97 //libra esterlina
-
-
-//Obtem o número inserido no campo "Valor"
-inputValue.addEventListener("input", () => {
-    //Teste - pega o que o usuário está digitando
-    // const value = inputValue.value
-    // console.log(value)
-
-    //o Regex pega tudo o que é texto
-    const hasCharacteresRegex = /\D+/g
-    //O replace Substitui o que é texto pora vazio ""
-    inputValue.value = inputValue.value.replace(hasCharacteresRegex, "")
-
+    // Teste
+    //console.log(`Value: ${amount.value}`)
 })
 
+//Obtem o tipo de moeda
+// currency.addEventListener("input", () => {
+//     console.log(`Currency: ${currency.value}`)
+// })
 
-//Obtem o valor da moeda selecionada
-currencySelect.addEventListener("change", () => {
-    const optionSelect = currencySelect.value
-    console.log(optionSelect)
-})
+//converte moeda
+function convertCurrency(amount, price, symbol) {
+    //console.log(`Amount: ${amount}, Price: ${price}, Symbol: ${symbol}`)
 
-//Envia o formulário pelo btn de Enter
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        event.preventDefault()
-        form.requestSubmit()
-    }
-})
-
-//converte o valor inserido para a moeda selecionada e exibe a taxa de câmbio e o valor convertido
-function convertCurrency(symbol, rate, value) {
-    //Teste - Verificar os parâmetros recebidos pela função
-    // console.log(`symbol: ${symbol}, rate: ${rate} value: ${value}`)
 
     try {
-        
+        // Exibindo a contação da moeda selecionada
+        description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`
+
+        //calcula o total e mostra o resultado
+        let total = amount * price
+        total = formatCurrencyBRL(total).replace("R$", "")
+        result.textContent = `${total} Reais `
+
+        //Aplica a classe que exibe o footer para mostrar o resultado
+        footer.classList.add("show-result")
     } catch (error) {
+        //Remove a classe do footer do formulário
+        footer.classList.remove("show-result")
+
         console.log(error)
-        alert("Ocorreu um erro ao converter a moeda. Por favor, tente novamente.")      
+        alert("Não foi possível converter. Tente novamente mais tarde")
     }
 }
 
+//Formata a moeda em real brasileiro
+function formatCurrencyBRL (value) {
+    //converte para número para utilizar o toLocaleString para formatar no padrão BRL (R$ 00,00)
+    return Number(value).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    })
+}
 
-//
-form.addEventListener("submit", (event) =>{
+form.addEventListener("submit", (event) => {
     event.preventDefault()
-    
-    //Teste - Verificar o valor selecionado e a taxa de câmbio correspondente
-    console.log(`currencySelect.value: ${currencySelect.value}`)
 
-    switch (currencySelect.value) {
+
+    switch (currency.value) {
         case "USD":
-            convertCurrency(inputValue.value, "S$", dollar)
+            convertCurrency(amount.value, USD, "US$" )
             break
         case "EUR":
-            convertCurrency(inputValue.value, "€", euro)
+            convertCurrency(amount.value, EUR, "€" )
             break
         case "GBP":
-            convertCurrency(inputValue.value, "£", pound)
+            convertCurrency(amount.value, GBP, "£" )
             break
     }
-
-    //Teste - Verificar o símbolo e a taxa de câmbio atribuídos
-   
-    containerForm.style.height = "340px"
-    resultBox.style.display = "flex"
-
+    
+    
 })
